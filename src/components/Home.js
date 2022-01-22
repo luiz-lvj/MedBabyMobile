@@ -10,12 +10,12 @@ export default function Home({ navigation }){
                 <Image source = {require('../imgs/MedBaby-08.png')} style={homeStyle.logoImg}/>
 
                 <View style = {homeStyle.button} onStartShouldSetResponder={() => navigation.navigate('Calculator') }>
-                    <Icon name="calendar" type='ionicon' />
+                    <Icon name="calendar" type='ionicon' color='#FFFFFF' size={30}/>
                     <Text style={homeStyle.textButton}>Calculadora gestacional</Text>
                 </View>
 
                 <View style = {homeStyle.button} onStartShouldSetResponder={() => navigation.navigate('Biometry') }>
-                    <Icon name="calendar" type='ionicon' />
+                    <Icon name="woman" type='ionicon' color='#FFFFFF'/>
                     <Text style={homeStyle.textButton}>Biometria fetal</Text>
                 </View>
 

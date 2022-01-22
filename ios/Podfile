@@ -12,6 +12,8 @@ target 'MedBabyMobile' do
     :hermes_enabled => false
   )
 
+  pod 'RNCPicker', :path => '../node_modules/@react-native-picker/picker'
+
   target 'MedBabyMobileTests' do
     inherit! :complete
     # Pods for testing

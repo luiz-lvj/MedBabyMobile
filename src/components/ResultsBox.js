@@ -28,7 +28,7 @@ export default function ResultsBox(props){
     function diffDateWeekDays(date, numWeeks, numDays){
         const weeksInMili = numWeeks * 7 * 24 * 3600 * 1000;
         const daysInMili = numDays * 24 * 3600 *1000;
-        const finalDate = new Date(date.getTime() + weeksInMili + daysInMili);
+        const finalDate = new Date(date.getTime() - weeksInMili - daysInMili);
         return finalDate
     }
 
@@ -52,7 +52,7 @@ export default function ResultsBox(props){
     }
 
     function timeWeekDaysFromUs(date, numWeeks, numDays){
-        if(isNaN(numWeeks) || isNaN(numDays) || numDays < 0){
+        if(isNaN(numWeeks) || isNaN(numDays) || numDays < 0 || numWeeks < 0){
             return {
                 weeks: '-',
                 days: '-'
@@ -64,6 +64,12 @@ export default function ResultsBox(props){
         const weeksInDays = Math.floor(timeInDays/7);
         const days = timeInDays - weeksInDays*7
         weeks = weeks + weeksInDays;
+        if(weeks <= 0 || days < 0){
+            return {
+                weeks: '-',
+                days: '-'
+            }
+        }
         return {
             weeks: weeks,
             days: days

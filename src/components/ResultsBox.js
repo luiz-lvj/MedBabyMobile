@@ -110,6 +110,15 @@ export default function ResultsBox(props){
                 </Text>
                 </>
                 }
+                {props.type === "biometry" && 
+                    <Text style={resultStyle.textResults}>
+                        Um feto na semana{" "}
+                        <Text style={resultStyle.boldText}>{props.week}</Text> tem{" "}
+                        <Text style={resultStyle.boldText}>{props.variable}</Text> de medida{" "}
+                        <Text style={resultStyle.boldText}>{props.valueChoosen}</Text> no percentil{" "}
+                        <Text style={resultStyle.boldText}>{props.percentile}</Text>
+                    </Text>
+                }
             </View>
         </View>
         

@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Calculator from './components/Calculator';
 import Biometry from './components/Biometry';
 
+import dbConnect from './dbConnect';
+
 const Stack = createNativeStackNavigator();
 
 export default function App(){

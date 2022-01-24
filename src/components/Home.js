@@ -1,6 +1,5 @@
 import React from 'react'
 import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native"
-import {Icon} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 
 export default function Home({ navigation }){
@@ -10,12 +9,12 @@ export default function Home({ navigation }){
                 <Image source = {require('../imgs/MedBaby-08.png')} style={homeStyle.logoImg}/>
 
                 <View style = {homeStyle.button} onStartShouldSetResponder={() => navigation.navigate('Calculator') }>
-                    <Icon name="calendar" type='ionicon' color='#FFFFFF' size={30}/>
+                    <Image source = {require('../imgs/MedBaby-icon02.png')} style={homeStyle.iconImg2}/>
                     <Text style={homeStyle.textButton}>Calculadora gestacional</Text>
                 </View>
 
                 <View style = {homeStyle.button} onStartShouldSetResponder={() => navigation.navigate('Biometry') }>
-                    <Icon name="woman" type='ionicon' color='#FFFFFF'/>
+                <Image source = {require('../imgs/MedBaby-icon01.png')} style={homeStyle.iconImg1}/>
                     <Text style={homeStyle.textButton}>Biometria fetal</Text>
                 </View>
 
@@ -64,12 +63,8 @@ const homeStyle = StyleSheet.create({
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 5,
-        borderColor: '#724983',
-        borderBottomWidth: 5,
-        borderRightWidth: 3,
-        borderLeftWidth: 0,
-        borderTopWidth: 0
+        elevation: 15,
+        borderColor: '#724983'
     },
     textButton:{
         color: '#FFFFFF',
@@ -88,5 +83,13 @@ const homeStyle = StyleSheet.create({
     },
     imgBottom: {
         width: '5%'
+    },
+    iconImg1:{
+        width: '20%',
+        height: '55%'
+    },
+    iconImg2:{
+        width: '15%',
+        height: '60%'
     }
 })

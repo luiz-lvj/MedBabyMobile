@@ -117,7 +117,20 @@ export default function ResultsBox(props){
                         <Text style={resultStyle.boldText}>{props.variable}</Text> de medida{" "}
                         <Text style={resultStyle.boldText}>{props.valueChoosen}</Text> no percentil{" "}
                         <Text style={resultStyle.boldText}>{props.percentile}</Text>
+                        
                     </Text>
+                }
+                {props.type === "ccn" &&
+                <>
+                <Text style={resultStyle.textResults}>
+                     <Text style={resultStyle.boldText}>Idade Gestacional:</Text>{" "}
+                     {props.weeks} semanas, {props.days} dias
+                </Text>
+                <Text style={resultStyle.textResults}> 
+                    <Text style={resultStyle.boldText}>Data provável do parto:</Text>
+                    { isNaN(props.weeks) || isNaN(props.days) ? '':" " + strFromDate(addWeeksToDate(diffDateWeekDays(new Date(), props.weeks,props.days), 40))}
+                </Text>
+                </>
                 }
             </View>
         </View>
@@ -146,6 +159,8 @@ const resultStyle = StyleSheet.create({
         borderRadius: 20,
         borderWidth: 2,
         zIndex: 1,
+        paddingLeft: 1,
+        paddingRight: 1
     },
     titleContainer: {
         display: "flex",

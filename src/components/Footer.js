@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text} from "react-native";
+import { StyleSheet, View, Image} from "react-native";
 import {Icon} from 'react-native-elements';
 import {useRoute} from '@react-navigation/native'
 
@@ -10,10 +10,10 @@ export default function Footer( { navigation } ){
     return(
         <View style={footerStyle({}).container}>
             <View style={footerStyle({routeName}).leftFooter} onStartShouldSetResponder={() => navigation.navigate('Calculator') }>
-                <Icon name="calendar" type='ionicon' color='#FFFFFF' size={45} />
+                <Image source = {require('../imgs/MedBaby-icon02.png')} style={footerStyle({}).iconImg2}/>
             </View>
             <View style={footerStyle({routeName}).rightFooter} onStartShouldSetResponder={() => navigation.navigate('Biometry') }>
-                <Icon name="woman" type='ionicon' color='#FFFFFF'/>
+            <Image source = {require('../imgs/MedBaby-icon01.png')} style={footerStyle({}).iconImg1}/>
             </View>
         </View>
     );
@@ -70,5 +70,13 @@ const footerStyle = (props) => StyleSheet.create({
         borderLeftWidth: props.routeName === 'Biometry' ? 15 : 0,
         borderRightWidth: 0,
         borderTopWidth: 0
+    },
+    iconImg1:{
+        width: '40%',
+        height: '45%'
+    },
+    iconImg2:{
+        width: '30%',
+        height: '55%'
     }
 })

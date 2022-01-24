@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import { Picker } from "@react-native-picker/picker";
 import CalculatorByUs from "./CalculatorByUs";
 import CalculatorByDum from "./CalculatorByDum";
+import CalculatorByCCN from "./CalculatorByCCN";
 
 export default function Calculator({ navigation }){
     const [selectCalc, setSelectCalc] = useState("");
@@ -25,11 +26,13 @@ export default function Calculator({ navigation }){
                 >
                     <Picker.Item label="Selecione o método" value=""/>
                     <Picker.Item label="Por ultrassonografia (US)" value="us"/>
-                    <Picker.Item label="Pela data da menstruação (DUM)" value="dum"/> 
+                    <Picker.Item label="Pela data da menstruação (DUM)" value="dum"/>
+                    {<Picker.Item label="Pelo CCN" value="ccn"/>}
                 </Picker>
                 {selectCalc === "us" && <CalculatorByUs/>}
                 {selectCalc === "dum" && <CalculatorByDum/>}
-                {selectCalc !== "us" && selectCalc !== "dum" && <View style={emptyStyle.container}/>}
+                {selectCalc === "ccn" && <CalculatorByCCN/>}
+                {selectCalc !== "us" && selectCalc !== "dum" && selectCalc != "ccn" && <View style={emptyStyle.container}/>}
                 
                 <Footer navigation={navigation}/>
             </LinearGradient>

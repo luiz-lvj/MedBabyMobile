@@ -194,7 +194,7 @@ export default function Biometry({ navigation }){
                     {variable != "" && week != "" && choiceMethod != "" &&
                         <View style={biometryStyle.containerSelection}>
                             <Text style={biometryStyle.label}>
-                                {choiceMethod === "valor" ? "Valor medido" : "Percentil"}
+                                {choiceMethod === "valor" ? "Valor medido mais próximo" : "Percentil"}
                             </Text>
                             <Picker
                             selectedValue={choiceMethod === "valor" ? valueChoosen : percentile}

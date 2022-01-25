@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import ResultsBox from "./ResultsBox";
+import dbConnect from "../dbConnect";
 
 export default function CalculatorByCCN(){
 
     const [ccnValue, setCcnValue] = useState("0");
+    const [weeks, setWeeks] = useState("-");
+    const [days, setDays] = useState("-")
 
     function changeCcnValue(newText){
         const numberCcn = parseFloat(newText);
@@ -17,31 +20,36 @@ export default function CalculatorByCCN(){
     }
 
     function getIgFromCCN(strCcn){
-        let floatCcn = parseFloat(strCcn);
-        if(isNaN(floatCcn)){
+        const ccnInt = parseInt(strCcn);
+        if(isNaN(ccnInt)){
             return {
                 weeks: '-',
                 days: '-'
             }
         }
-        const ig = 5.2827 + (0.1584* floatCcn) - (0.0007 * floatCcn*floatCcn);
-        if(ig < 0){
+        if(ccnInt < 2 || ccnInt > 79){
             return {
                 weeks: '-',
                 days: '-'
-            } 
+            }
         }
-        const weeks = Math.floor(ig);
-        const days = Math.floor((ig-weeks)*7);
+        dbConnect.transaction( tx => {
+            const sqlQuery = `SELECT * FROM ccn_idade_gest
+            WHERE "ccn"=${ccnInt};`
+            tx.executeSql(sqlQuery, [], (tx2, results) => {
+                setWeeks(results.rows.item(0)["idade_gestacional_semanas"])
+                setDays(results.rows.item(0)["idade_gestacional_dias"])
+            });
+        });
         return {
-            weeks: weeks,
-            days: days
+            weeks: weeks ? weeks : '-',
+            days: days ? days : '-'
         }
     }
     return(
         <View style={dateStyle.container}>
             <View style={dateStyle.containerDates}>
-                <Text style={dateStyle.labelDate}>Medida do CCN (em mm)</Text>
+                <Text style={dateStyle.labelDate}>Medida do CCN (entre 2 e 79 mm)</Text>
                 <TextInput
                 value={ccnValue}
                 keyboardType="numeric"
@@ -50,7 +58,6 @@ export default function CalculatorByCCN(){
                 />
             </View>
             <ResultsBox type="ccn" weeks={getIgFromCCN(ccnValue).weeks} days={getIgFromCCN(ccnValue).days}/>
-            
         </View>
     )
 }

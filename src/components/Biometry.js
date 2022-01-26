@@ -34,6 +34,11 @@ export default function Biometry({ navigation }){
     }, []);
 
     function selectVariable(value, idx){
+        for(let i = 0; i < variablesList.length; i++){
+            if(variablesList[i]["table_name"] == value){
+                setVariableAppName(variablesList[i]["app_name"]);
+            }
+        }
         setVariable(value);
         setWeek("");
         setWeeksList([])
@@ -42,14 +47,9 @@ export default function Biometry({ navigation }){
         setValuesList([]);
         setPercentile("");
         setPercentilesList([]);
-        for(let i = 0; i < variablesList.length; i++){
-            if(variablesList[i]["table_name"] == variable){
-                setVariableAppName(variablesList[i]["app_name"]);
-            }
-        }
-        if(variable != ""){
+        if(value != ""){
             dbConnect.transaction( tx => {
-                const sqlQuery = `SELECT DISTINCT "idade_gestacional" FROM ${variable};`
+                const sqlQuery = `SELECT DISTINCT "idade_gestacional" FROM ${value};`
                 tx.executeSql(sqlQuery, [], (tx2, results) => {
                     let weeks = [];
                     for(let i = 0; i < results.rows.length; ++i){

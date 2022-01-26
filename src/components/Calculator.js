@@ -27,12 +27,12 @@ export default function Calculator({ navigation }){
                     <Picker.Item label="Selecione o método" value=""/>
                     <Picker.Item label="Por ultrassonografia (US)" value="us"/>
                     <Picker.Item label="Pela data da menstruação (DUM)" value="dum"/>
-                    {<Picker.Item label="Pelo CCN" value="ccn"/>}
+                    <Picker.Item label="Pelo CCN" value="ccn"/>
                 </Picker>
                 {selectCalc === "us" && <CalculatorByUs/>}
                 {selectCalc === "dum" && <CalculatorByDum/>}
                 {selectCalc === "ccn" && <CalculatorByCCN/>}
-                {selectCalc !== "us" && selectCalc !== "dum" && selectCalc != "ccn" && <View style={emptyStyle.container}/>}
+                {selectCalc !== "us" && selectCalc !== "dum" && selectCalc != "ccn" &&<View style={emptyStyle.container}/>}
                 
                 <Footer navigation={navigation}/>
             </LinearGradient>

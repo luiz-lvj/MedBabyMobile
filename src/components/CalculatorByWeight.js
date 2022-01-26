@@ -4,8 +4,7 @@ import { TextInput } from "react-native-gesture-handler";
 import ResultsBox from "./ResultsBox";
 import dbConnect from "../dbConnect";
 
-export default function CalculatorByCCN(){
-
+export default function CalculatorByWeight(props){
     const [ccnValue, setCcnValue] = useState("0");
     const [weeks, setWeeks] = useState("-");
     const [days, setDays] = useState("-")
@@ -49,7 +48,7 @@ export default function CalculatorByCCN(){
     return(
         <View style={dateStyle.container}>
             <View style={dateStyle.containerDates}>
-                <Text style={dateStyle.labelDate}>Medida do CCN (2mm-79 mm)</Text>
+                <Text style={dateStyle.labelDate}>Peso medido</Text>
                 <TextInput
                 value={ccnValue}
                 keyboardType="numeric"
